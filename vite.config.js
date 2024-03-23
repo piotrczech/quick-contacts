@@ -12,6 +12,9 @@ export default defineConfig({
     vue(),
     vuetify({ autoImport: true }),
     VitePWA({
+      strategies: 'injectManifest',
+      srcDir: 'src/sw',
+      filename: 'worker.js',
       registerType: 'autoUpdate',
       manifest: {
         name: 'QuickContacts',
