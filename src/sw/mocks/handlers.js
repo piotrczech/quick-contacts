@@ -1,7 +1,7 @@
 import { http, HttpResponse } from 'msw'
 
 const handlers = [
-  http.get(`api/test`, () => {
+  http.get('/api/v1/test', () => {
     return HttpResponse.json({ msg: 'it works!' })
   })
 ]

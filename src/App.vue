@@ -1,5 +1,8 @@
 <script setup>
 import AppNavigation from './components/app/AppNavigation.vue'
+import axios from '@axios'
+
+axios.get('test')
 </script>
 <template>
   <v-app id="app">
