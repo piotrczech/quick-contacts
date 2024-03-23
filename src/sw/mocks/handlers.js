@@ -1,10 +1,9 @@
-import { http, HttpResponse } from 'msw'
-import { API_PREFIX } from './utils'
+import contactInfoHandlers from './contact-info'
 
-const handlers = [
-  http.get(`${API_PREFIX}/test`, () => {
-    return HttpResponse.json({ msg: 'it works!' })
-  })
+/**
+ * Combined array of all API handlers.
+ * @type {Array}
+ */
+export default [
+  ...contactInfoHandlers,
 ]
-
-export default handlers
