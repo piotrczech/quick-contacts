@@ -27,6 +27,7 @@
     "jsdom": "^24.0.0",
     "prettier": "^3.0.3",
     "vite": "^5.1.6",
+    "vite-plugin-pwa": "^0.19.7",
     "vite-plugin-vue-devtools": "^7.0.18",
     "vitest": "^1.4.0"
   }
