@@ -1,15 +1,16 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import AppNavigation from './components/app/AppNavigation.vue'
 </script>
-
 <template>
-  <header>
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-      </nav>
-    </div>
-  </header>
+  <v-app id="app">
+    <v-app-bar>
+      <v-app-bar-title>QuickContacts</v-app-bar-title>
+    </v-app-bar>
 
-  <RouterView />
+    <v-main>
+      <RouterView />
+    </v-main>
+
+    <app-navigation />
+  </v-app>
 </template>
