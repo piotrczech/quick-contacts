@@ -31,6 +31,24 @@ const handlers = [
     } catch (error) {
       return HttpResponse.error(error.message, { status: 409 })
     }
+  }),
+
+  /**
+   * Handler for editing existing contact info.
+   *
+   * @param {Object} request HTTP request containing updated contact info data.
+   */
+  http.put(`${API_PREFIX}/contact-info/:id`, async ({ request, params }) => {
+    try {
+      const updatedContactInfoData = await request.json()
+      const updatedContactInfo = contactInfoController.editOne(
+        Number(params.id),
+        updatedContactInfoData
+      )
+      return HttpResponse.json(updatedContactInfo)
+    } catch (error) {
+      return HttpResponse.error(error.message, { status: 404 })
+    }
   })
 ]
 

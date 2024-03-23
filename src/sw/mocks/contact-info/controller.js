@@ -34,7 +34,7 @@ class ContactInfoController {
   /**
    * Adds a new contact.
    *
-   * @param {Object} data Contact data.
+   * @param {Object} requestData Contact data.
    * @returns {string|null} ID of the newly added contact, or null if failed.
    */
   addOne(requestData) {
@@ -48,6 +48,25 @@ class ContactInfoController {
     this.contactInfo.set(newId, newContactInfo)
 
     return newContactInfo
+  }
+
+  /**
+   * Edits an existing contact.
+   *
+   * @param {number} id ID of the contact to edit.
+   * @param {Object} requestData Updated contact data.
+   */
+  editOne(id, requestData) {
+    if (!this.contactInfo.has(id)) {
+      throw new Error(`Contact with ID ${id} not found.`)
+    }
+
+    const selectedContactInfo = this.contactInfo.get(id)
+    const editedContactInfo = new ContactInfo({ ...selectedContactInfo, ...requestData })
+
+    this.contactInfo.set(id, editedContactInfo)
+
+    return editedContactInfo
   }
 }
 
