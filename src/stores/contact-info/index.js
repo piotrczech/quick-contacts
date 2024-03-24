@@ -52,6 +52,16 @@ export const useContactInfoStore = defineStore('contactInfo', () => {
     fetchContactInfoList(true)
   }
 
+  /**
+   * Retrieves contact information by ID.
+   *
+   * @param {string} id - The ID of the contact to retrieve.
+   * @returns {Object|null} The contact information if found, otherwise null.
+   */
+  const getContactInfoById = (id) => {
+    return contactInfoList.value.find((contact) => contact.id == id) || null
+  }
+
   onMounted(() => {
     fetchContactInfoList()
   })
@@ -60,6 +70,7 @@ export const useContactInfoStore = defineStore('contactInfo', () => {
     contactInfoList,
     isLoading,
     fetchContactInfoList,
-    addContactInfo
+    addContactInfo,
+    getContactInfoById
   }
 })
