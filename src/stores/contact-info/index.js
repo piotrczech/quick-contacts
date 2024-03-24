@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import useContactInfoApi from '@/composable/api/useContactInfoApi'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 /**
  * Contact info store.
@@ -51,6 +51,10 @@ export const useContactInfoStore = defineStore('contactInfo', () => {
     contactInfoList.value.push(inputsValues)
     fetchContactInfoList(true)
   }
+
+  onMounted(() => {
+    fetchContactInfoList()
+  })
 
   return {
     contactInfoList,
