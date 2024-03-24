@@ -1,8 +1,11 @@
 <script setup>
 import ContactInfoDataForm from '@/components/contact-info/ContactInfoDataForm.vue'
+import { useContactInfoStore } from '@/stores/contact-info'
 
-const addNewContact = (inputValues) => {
-  console.log(inputValues)
+const contactInfoStore = useContactInfoStore()
+
+const addNewContact = (inputsValues) => {
+  contactInfoStore.addContactInfo(inputsValues)
 }
 </script>
 

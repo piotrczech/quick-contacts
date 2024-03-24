@@ -15,8 +15,8 @@ const useContactInfoApi = () => {
   return {
     isLoading,
     getAllContactInfo: getAll,
-    addContactInfo: createOne,
-    updateContactInfo: updateOne
+    createOneContactInfo: createOne,
+    updateOneContactInfo: updateOne
   }
 }
 

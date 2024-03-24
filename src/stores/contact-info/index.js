@@ -16,7 +16,7 @@ export const useContactInfoStore = defineStore('contactInfo', () => {
    */
   const isLoading = ref(false)
 
-  const { getAllContactInfo } = useContactInfoApi()
+  const { getAllContactInfo, createOneContactInfo } = useContactInfoApi()
 
   /**
    * Fetches the list of contact information from the API.
@@ -36,9 +36,25 @@ export const useContactInfoStore = defineStore('contactInfo', () => {
     }
   }
 
+  /**
+   * Adds a new contact information.
+   *
+   * @param {Object} inputsValues - Values of the contact information to add.
+   */
+  const addContactInfo = async (inputsValues) => {
+    try {
+      await createOneContactInfo(inputsValues)
+    } catch (error) {
+      console.error(error)
+    }
+
+    fetchContactInfoList(true)
+  }
+
   return {
     contactInfoList,
     isLoading,
-    fetchContactInfoList
+    fetchContactInfoList,
+    addContactInfo
   }
 })
