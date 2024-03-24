@@ -37,6 +37,11 @@ export const useContactInfoStore = defineStore('contactInfo', () => {
     }
   }
 
+  /**
+   * Fetches the contact info from the API.
+   *
+   * @param {number} id - The ID of the contact information to fetch.
+   */
   const fetchContactInfo = async (id) => {
     if (Number.isNaN(id) || !id) return
 
