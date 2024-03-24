@@ -1,19 +1,14 @@
-# quick-contacts
+# Quick Contacts
 
-This template should help get you started developing with Vue 3 in Vite.
+A Vue.js 3 phonebook app with Vuetify components, optimized as a PWA. Enables fast contact search, addition, and editing.
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+This project uses `vuetify` to style components. For serving the PWA, the project utilizes the combined `vite-plugin-pwa` plugin with `msw` to enable simple REST mockups. Additionally, all project components are unit tested using the vitest environment.
 
 ## Project Setup
 
 ```sh
 npm install
+npm run build
 ```
 
 ### Compile and Hot-Reload for Development
@@ -22,20 +17,22 @@ npm install
 npm run dev
 ```
 
+To expose localhost for testing PWA on mobile devices, run:
+
+```sh
+npm run dev -- --host
+```
+
+Note: You'll need to download the application using your mobile browser's options menu as localhost is served over HTTP, which won't trigger a notification.
+
 ### Compile and Minify for Production
 
 ```sh
 npm run build
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+### Run Unit Tests
 
 ```sh
 npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
 ```
