@@ -3,7 +3,22 @@ import { API_PREFIX } from './../utils'
 import ContactInfoController from './controller'
 import contactInfoDefaultValues from './defaultValues'
 
-const contactInfoController = new ContactInfoController(contactInfoDefaultValues)
+let contactInfoController
+
+/**
+ * Initializes the ContactInfoController with default values.
+ *
+ * @param {Array} defaultValues Array of default contact info values.
+ */
+export const initializeContactInfoController = (defaultValues = contactInfoDefaultValues) => {
+  if (!Array.isArray(defaultValues)) {
+    throw new Error('Default values for the contact info controller must be an array.')
+  }
+
+  contactInfoController = new ContactInfoController(defaultValues)
+}
+
+initializeContactInfoController()
 
 /**
  * Handlers for managing contact info endpoints.
