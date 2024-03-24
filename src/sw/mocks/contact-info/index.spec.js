@@ -59,4 +59,63 @@ describe('contact-info api', () => {
     expect(contactInfoList.length).toBe(0)
     expect(contactInfoList).toEqual([])
   })
+
+  it('(POST) should provide new ID as max current ID + 1', async () => {
+    let contactInfoList = await axios
+      .get('contact-info')
+      .then((resp) => resp.data)
+      .catch((e) => e)
+
+    const oldId = contactInfoList[1].id
+
+    expect(oldId).toBe(2)
+
+    const newContactInfo = {
+      firstName: 'Władysław',
+      lastName: 'Łokietek',
+      phoneNumber: '222111222',
+      email: 'wladi@onet.pl'
+    }
+
+    const response = await axios.post('contact-info', newContactInfo)
+    expect(response.status).toBe(201)
+
+    contactInfoList = await axios
+      .get('contact-info')
+      .then((resp) => resp.data)
+      .catch((e) => e)
+    expect(contactInfoList[2]).toEqual({
+      id: 3,
+      ...newContactInfo
+    })
+  })
+
+  it('(POST) should not be possible to provide custom id', async () => {
+    const newContactInfo = {
+      id: 15,
+      firstName: 'Władysław',
+      lastName: 'Łokietek',
+      phoneNumber: '222111222',
+      email: 'wladi@onet.pl'
+    }
+
+    const response = await axios.post('contact-info', newContactInfo)
+
+    expect(response.status).toBe(201)
+    expect(response.data).toEqual({
+      ...newContactInfo,
+      id: 3
+    })
+
+    const contactInfoList = await axios
+      .get('contact-info')
+      .then((resp) => resp.data)
+      .catch((e) => e)
+
+    expect(contactInfoList.length).toBe(3)
+    expect(contactInfoList[2]).toEqual({
+      ...newContactInfo,
+      id: 3
+    })
+  })
 })
