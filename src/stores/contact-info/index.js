@@ -5,7 +5,7 @@ import { ref } from 'vue'
 /**
  * Contact info store.
  */
-export const useContactInfoStore = defineStore('contact-info', () => {
+export const useContactInfoStore = defineStore('contactInfo', () => {
   /**
    * List of all contact information.
    */

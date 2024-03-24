@@ -1,5 +1,5 @@
 <script setup>
-import ContactInfoListTable from '@/components/app/contact-info/ContactInfoListTable.vue'
+import ContactInfoListTable from '@/components/contact-info/ContactInfoListTable.vue'
 </script>
 
 <template>
