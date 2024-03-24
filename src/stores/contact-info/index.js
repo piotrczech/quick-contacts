@@ -16,7 +16,8 @@ export const useContactInfoStore = defineStore('contactInfo', () => {
    */
   const isLoading = ref(false)
 
-  const { getAllContactInfo, createOneContactInfo, updateOneContactInfo } = useContactInfoApi()
+  const { getAllContactInfo, getOneContactInfo, createOneContactInfo, updateOneContactInfo } =
+    useContactInfoApi()
 
   /**
    * Fetches the list of contact information from the API.
@@ -33,6 +34,24 @@ export const useContactInfoStore = defineStore('contactInfo', () => {
       console.error(error)
     } finally {
       isLoading.value = false
+    }
+  }
+
+  const fetchContactInfo = async (id) => {
+    if (Number.isNaN(id) || !id) return
+
+    try {
+      const contactInfo = await getOneContactInfo(id)
+
+      // Find the index of the contact info in the list
+      const index = contactInfoList.value.findIndex((contact) => contact.id == id)
+
+      if (index >= 0) {
+        // To maintain reactivity
+        contactInfoList.value.splice(index, 1, contactInfo)
+      }
+    } catch (error) {
+      console.error(error)
     }
   }
 
@@ -93,6 +112,7 @@ export const useContactInfoStore = defineStore('contactInfo', () => {
     contactInfoList,
     isLoading,
     fetchContactInfoList,
+    fetchContactInfo,
     addContactInfo,
     editContactInfo,
     getContactInfoById
