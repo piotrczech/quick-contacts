@@ -34,7 +34,7 @@ watch(
 )
 </script>
 <template>
-  <form @submit.prevent="submit" class="w-50">
+  <form @submit.prevent="submit" class="w-100">
     <v-text-field
       v-model="firstName.value.value"
       :error-messages="firstName.errorMessage.value"
