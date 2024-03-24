@@ -15,7 +15,7 @@ const contactInfoStore = useContactInfoStore()
     data-testid="contact-info-list-table"
   >
     <template v-slot:[`item.actions`]="{ item }">
-      <v-btn @click="editContact(item)" text> Edytuj </v-btn>
+      <v-btn :to="{ name: 'contact-info/edit', params: { id: item.id } }" text> Edytuj </v-btn>
     </template>
   </v-data-table-virtual>
 </template>
