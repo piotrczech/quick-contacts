@@ -1,10 +1,20 @@
 <script setup>
 import { useField, useForm } from 'vee-validate'
 import validationSchema from '@/const/forms/contactInfoFormValidationSchema'
+import { watch } from 'vue'
 
+const props = defineProps({
+  defaultValues: {
+    type: Object,
+    default: () => ({})
+  }
+})
 const emits = defineEmits(['handleSubmit'])
 
-const { handleSubmit, handleReset } = useForm({ validationSchema })
+const { handleSubmit, handleReset, resetForm } = useForm({
+  validationSchema,
+  initialState: props.defaultValues
+})
 
 const firstName = useField('firstName')
 const lastName = useField('lastName')
@@ -14,6 +24,14 @@ const phoneNumber = useField('phoneNumber')
 const submit = handleSubmit((values) => {
   emits('handleSubmit', values)
 })
+
+watch(
+  () => props.defaultValues,
+  (newDefaultValues) => {
+    resetForm({ values: newDefaultValues })
+  },
+  { immediate: true }
+)
 </script>
 <template>
   <form @submit.prevent="submit" class="w-50">

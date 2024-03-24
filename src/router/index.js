@@ -12,6 +12,11 @@ const router = createRouter({
       path: '/contact-info/add',
       name: 'contact-info/add',
       component: () => import('../views/contact-info/ContactInfoAddView.vue')
+    },
+    {
+      path: '/contact-info/edit/:id(\\d+)',
+      name: 'contact-info/edit',
+      component: () => import('../views/contact-info/ContactInfoEditView.vue')
     }
   ]
 })

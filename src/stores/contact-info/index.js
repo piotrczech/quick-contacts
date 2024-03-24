@@ -16,7 +16,8 @@ export const useContactInfoStore = defineStore('contactInfo', () => {
    */
   const isLoading = ref(false)
 
-  const { getAllContactInfo, createOneContactInfo } = useContactInfoApi()
+  const { getAllContactInfo, getOneContactInfo, createOneContactInfo, updateOneContactInfo } =
+    useContactInfoApi()
 
   /**
    * Fetches the list of contact information from the API.
@@ -37,6 +38,29 @@ export const useContactInfoStore = defineStore('contactInfo', () => {
   }
 
   /**
+   * Fetches the contact info from the API.
+   *
+   * @param {number} id - The ID of the contact information to fetch.
+   */
+  const fetchContactInfo = async (id) => {
+    if (Number.isNaN(id) || !id) return
+
+    try {
+      const contactInfo = await getOneContactInfo(id)
+
+      // Find the index of the contact info in the list
+      const index = contactInfoList.value.findIndex((contact) => contact.id == id)
+
+      if (index >= 0) {
+        // To maintain reactivity
+        contactInfoList.value.splice(index, 1, contactInfo)
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  /**
    * Adds a new contact information.
    *
    * @param {Object} inputsValues - Values of the contact information to add.
@@ -52,6 +76,39 @@ export const useContactInfoStore = defineStore('contactInfo', () => {
     fetchContactInfoList(true)
   }
 
+  /**
+   * Edits an existing contact info.
+   *
+   * @param {number} id - The ID of the contact information to edit.
+   * @param {Object} inputsValues - Updated values of the contact information.
+   */
+  const editContactInfo = async (id, inputsValues) => {
+    try {
+      await updateOneContactInfo(id, inputsValues)
+    } catch (error) {
+      console.error(error)
+    }
+
+    // Find the index of the contact info in the list
+    const index = contactInfoList.value.findIndex((contact) => contact.id == id)
+
+    // To maintain reactivity
+    const updatedContact = { ...contactInfoList.value[index], ...inputsValues }
+    contactInfoList.value.splice(index, 1, updatedContact)
+
+    fetchContactInfoList(true)
+  }
+
+  /**
+   * Retrieves contact information by ID.
+   *
+   * @param {string} id - The ID of the contact to retrieve.
+   * @returns {Object|null} The contact information if found, otherwise null.
+   */
+  const getContactInfoById = (id) => {
+    return contactInfoList.value.find((contact) => contact.id == id) || null
+  }
+
   onMounted(() => {
     fetchContactInfoList()
   })
@@ -60,6 +117,9 @@ export const useContactInfoStore = defineStore('contactInfo', () => {
     contactInfoList,
     isLoading,
     fetchContactInfoList,
-    addContactInfo
+    fetchContactInfo,
+    addContactInfo,
+    editContactInfo,
+    getContactInfoById
   }
 })
