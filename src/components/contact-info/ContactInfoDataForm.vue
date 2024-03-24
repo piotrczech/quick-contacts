@@ -2,6 +2,8 @@
 import { useField, useForm } from 'vee-validate'
 import validationSchema from '@/const/forms/contactInfoFormValidationSchema'
 
+const emits = defineEmits(['handleSubmit'])
+
 const { handleSubmit, handleReset } = useForm({ validationSchema })
 
 const firstName = useField('firstName')
@@ -10,7 +12,7 @@ const email = useField('email')
 const phoneNumber = useField('phoneNumber')
 
 const submit = handleSubmit((values) => {
-  alert(JSON.stringify(values, null, 2))
+  emits('handleSubmit', values)
 })
 </script>
 <template>
