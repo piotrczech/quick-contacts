@@ -34,6 +34,13 @@ const handlers = [
   }),
 
   /**
+   * Handler for retrieving one specific contact info.
+   */
+  http.get(`${API_PREFIX}/contact-info/:id`, ({ params }) => {
+    return HttpResponse.json(contactInfoController.getOne(Number(params.id)))
+  }),
+
+  /**
    * Handler for adding new contact info.
    *
    * @param {Object} request HTTP request containing new contact info data.

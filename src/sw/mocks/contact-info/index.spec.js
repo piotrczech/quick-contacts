@@ -41,11 +41,26 @@ describe('contact-info api', () => {
       {
         id: 2,
         firstName: 'Katarzyna',
-        lastName: null,
+        lastName: 'Wielka',
         phoneNumber: '000000000',
-        email: null
+        email: 'kasia@skrzynka.pl'
       }
     ])
+  })
+
+  it('(GET) should get one specific by id', async () => {
+    const contactInfo = await axios
+      .get('contact-info/2')
+      .then((resp) => resp.data)
+      .catch((e) => e)
+
+    expect(contactInfo).toEqual({
+      id: 2,
+      firstName: 'Katarzyna',
+      lastName: 'Wielka',
+      phoneNumber: '000000000',
+      email: 'kasia@skrzynka.pl'
+    })
   })
 
   it('(GET) should be possible to set an empty list as the initial value', async () => {
@@ -136,7 +151,7 @@ describe('contact-info api', () => {
 
     expect(contactInfoList[1]).toEqual({
       phoneNumber: '000000000',
-      lastName: null,
+      lastName: 'Wielka',
       ...updatedContactInfo
     })
   })

@@ -32,6 +32,16 @@ class ContactInfoController {
   }
 
   /**
+   * Retrieves one contact info by id.
+   *
+   * @param {number} id ID of the contact to get.
+   * @returns {Array} Array of contact info objects.
+   */
+  getOne(id) {
+    return this.contactInfo.get(id) ?? null
+  }
+
+  /**
    * Adds a new contact.
    *
    * @param {Object} requestData Contact data.
