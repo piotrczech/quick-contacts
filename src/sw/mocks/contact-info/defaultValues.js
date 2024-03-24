@@ -9,7 +9,9 @@ const defaultValues = [
   new ContactInfo({
     id: 2,
     firstName: 'Katarzyna',
-    phoneNumber: '000000000'
+    lastName: 'Wielka',
+    phoneNumber: '000000000',
+    email: 'kasia@skrzynka.pl'
   })
 ]
 
