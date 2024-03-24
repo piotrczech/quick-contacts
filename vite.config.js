@@ -19,7 +19,7 @@ export default defineConfig({
       manifest: {
         name: 'QuickContacts',
         short_name: 'QuickContacts',
-        description: ' A phonebook app that enables fast contact search, addition, and editing.',
+        description: 'A phonebook app that enables fast contact search, addition, and editing.',
         theme_color: '#ffffff',
         background_color: '#212121',
         icons: [

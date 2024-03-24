@@ -22,8 +22,8 @@ const editContact = (inputsValues) => {
 
 <template>
   <v-container fluid>
-    <v-row>
-      <v-col cols="12" class="d-flex justify-center">
+    <v-row class="justify-center">
+      <v-col cols="12" md="6" class="d-flex justify-center">
         <contact-info-data-form
           @handle-submit="editContact"
           :default-values="selectedContantInfo"
