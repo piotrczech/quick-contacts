@@ -48,6 +48,7 @@ export const useContactInfoStore = defineStore('contactInfo', () => {
       console.error(error)
     }
 
+    contactInfoList.value.push(inputsValues)
     fetchContactInfoList(true)
   }
 
