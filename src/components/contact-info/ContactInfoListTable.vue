@@ -1,13 +1,8 @@
 <script setup>
 import contactInfoListTableHeaders from '@/const/tables/contactInfoListTableHeaders'
 import { useContactInfoStore } from '@/stores/contact-info'
-import { onMounted } from 'vue'
 
 const contactInfoStore = useContactInfoStore()
-
-onMounted(() => {
-  contactInfoStore.fetchContactInfoList()
-})
 </script>
 
 <template>
