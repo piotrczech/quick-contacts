@@ -118,4 +118,26 @@ describe('contact-info api', () => {
       id: 3
     })
   })
+
+  it('(PUT) should update existing contact info', async () => {
+    const updatedContactInfo = {
+      id: 2,
+      firstName: 'Haaland',
+      email: 'skrzynka@pocztowa.com'
+    }
+
+    const response = await axios.put(`contact-info/${updatedContactInfo.id}`, updatedContactInfo)
+    expect(response.status).toBe(200)
+
+    const contactInfoList = await axios
+      .get('contact-info')
+      .then((resp) => resp.data)
+      .catch((e) => e)
+
+    expect(contactInfoList[1]).toEqual({
+      phoneNumber: '000000000',
+      lastName: null,
+      ...updatedContactInfo
+    })
+  })
 })
