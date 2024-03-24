@@ -91,7 +91,7 @@ const useCRUDapi = (
    * @param {object} newData The data for the new item.
    * @returns {Promise<object>} Promise representing the result of the HTTP request.
    */
-  const addData = async (newData) => {
+  const createOne = async (newData) => {
     return await makeRequest(CRUD.CREATE, newData)
   }
 
@@ -102,7 +102,7 @@ const useCRUDapi = (
    * @param {object} updatedData The updated data for the item.
    * @returns {Promise<object>} Promise representing the result of the HTTP request.
    */
-  const updateData = async (id, updatedData) => {
+  const updateOne = async (id, updatedData) => {
     return await makeRequest(CRUD.UPDATE, updatedData, id)
   }
 
@@ -112,7 +112,7 @@ const useCRUDapi = (
    * @param {string} id The ID of the item to delete.
    * @returns {Promise<boolean>} Promise representing the success of the deletion.
    */
-  const deleteData = async (id) => {
+  const deleteOne = async (id) => {
     return await makeRequest(CRUD.DELETE, null, id)
   }
 
@@ -121,9 +121,9 @@ const useCRUDapi = (
 
     getAll,
     getOne,
-    addData,
-    updateData,
-    deleteData
+    createOne,
+    updateOne,
+    deleteOne
   }
 }
 

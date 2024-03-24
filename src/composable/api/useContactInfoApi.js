@@ -6,7 +6,7 @@ import useCRUDapi, { CRUD } from './useCRUDapi'
  * @returns {object} Object containing functions for CRUD operations and loading state.
  */
 const useContactInfoApi = () => {
-  const { isLoading, getAll, addData, updateData } = useCRUDapi('contact-info', [
+  const { isLoading, getAll, createOne, updateOne } = useCRUDapi('contact-info', [
     CRUD.READ_ALL,
     CRUD.CREATE,
     CRUD.UPDATE
@@ -15,8 +15,8 @@ const useContactInfoApi = () => {
   return {
     isLoading,
     getAllContactInfo: getAll,
-    addContactInfo: addData,
-    updateContactInfo: updateData
+    addContactInfo: createOne,
+    updateContactInfo: updateOne
   }
 }
 
