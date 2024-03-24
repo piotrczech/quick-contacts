@@ -14,7 +14,6 @@ import contactInfoListTableHeaders from '@/const/tables/contactInfoListTableHead
         email: 'kasia@skrzynka.pl'
       }
     ]"
-    height="400"
     item-value="contactInfo"
     no-data-text="Brak danych"
     :sortable="false"
