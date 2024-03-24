@@ -1,19 +1,19 @@
 <script setup>
 import contactInfoListTableHeaders from '@/const/tables/contactInfoListTableHeaders'
+import { useContactInfoStore } from '@/stores/contact-info'
+import { onMounted } from 'vue'
+
+const contactInfoStore = useContactInfoStore()
+
+onMounted(() => {
+  contactInfoStore.fetchContactInfoList()
+})
 </script>
 
 <template>
   <v-data-table-virtual
     :headers="contactInfoListTableHeaders"
-    :items="[
-      {
-        id: 2,
-        firstName: 'Katarzyna',
-        lastName: 'Tomaszkiewicz',
-        phoneNumber: '000000000',
-        email: 'kasia@skrzynka.pl'
-      }
-    ]"
+    :items="contactInfoStore.contactInfoList"
     item-value="contactInfo"
     no-data-text="Brak danych"
     :sortable="false"
