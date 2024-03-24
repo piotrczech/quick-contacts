@@ -1,8 +1,5 @@
 <script setup>
 import AppNavigation from './components/app/AppNavigation.vue'
-import axios from '@axios'
-
-axios.get('contact-info')
 </script>
 <template>
   <v-app id="app">
